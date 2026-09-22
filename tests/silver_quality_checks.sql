@@ -17,11 +17,9 @@ Usage Notes:
 ===============================================================================
 */
 
--- ====================================================================
--- Checking 'silver.crm_cust_info'
--- ====================================================================
+
+
 -- Check for NULLs or Duplicates in Primary Key
--- Expectation: No Results
 SELECT 
     cst_id,
     COUNT(*) 
@@ -30,7 +28,6 @@ GROUP BY cst_id
 HAVING COUNT(*) > 1 OR cst_id IS NULL;
 
 -- Check for Unwanted Spaces
--- Expectation: No Results
 SELECT 
     cst_key 
 FROM silver.crm_cust_info
@@ -41,11 +38,8 @@ SELECT DISTINCT
     cst_marital_status 
 FROM silver.crm_cust_info;
 
--- ====================================================================
--- Checking 'silver.crm_prd_info'
--- ====================================================================
+
 -- Check for NULLs or Duplicates in Primary Key
--- Expectation: No Results
 SELECT 
     prd_id,
     COUNT(*) 
@@ -73,17 +67,13 @@ SELECT DISTINCT
 FROM silver.crm_prd_info;
 
 -- Check for Invalid Date Orders (Start Date > End Date)
--- Expectation: No Results
 SELECT 
     * 
 FROM silver.crm_prd_info
 WHERE prd_end_dt < prd_start_dt;
 
--- ====================================================================
--- Checking 'silver.crm_sales_details'
--- ====================================================================
+
 -- Check for Invalid Dates
--- Expectation: No Invalid Dates
 SELECT 
     NULLIF(sls_due_dt, 0) AS sls_due_dt 
 FROM bronze.crm_sales_details
@@ -132,20 +122,15 @@ SELECT DISTINCT
     gen 
 FROM silver.erp_cust_az12;
 
--- ====================================================================
--- Checking 'silver.erp_loc_a101'
--- ====================================================================
+
 -- Data Standardization & Consistency
 SELECT DISTINCT 
     cntry 
 FROM silver.erp_loc_a101
 ORDER BY cntry;
 
--- ====================================================================
--- Checking 'silver.erp_px_cat_g1v2'
--- ====================================================================
+
 -- Check for Unwanted Spaces
--- Expectation: No Results
 SELECT 
     * 
 FROM silver.erp_px_cat_g1v2
