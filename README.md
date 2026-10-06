@@ -23,6 +23,7 @@ along the way (such as setting up SQL Server from scratch and resolving connecti
 - DBeaver
 - Medallion Architecture
 - Notion
+- Draw.io
 
 
 ## 🧩 Challenges I Faced & How I Solved Them
